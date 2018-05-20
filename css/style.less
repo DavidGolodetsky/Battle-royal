@@ -2,14 +2,61 @@
 body {
   background: url(../img/bg.jpg) no-repeat 50% 10%;
   background-size: cover;
+  background-color: rgba(0, 0, 0, .5);
+  background-blend-mode: multiply;
   height: 100vh;
   font-family: 'MedievalSharp', cursive;
   color: grey;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, .7);
   position: relative;
   box-sizing: border-box;
   margin: 0;
 }
+
+
+.audio_wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  &:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    pointer-events: none;
+    opacity: 1;
+    transition: .3s;
+  }
+  &:hover:after {
+    opacity: 0;
+    transition: .3s;
+  }
+}
+
+.btn {
+  font-size: 30px;
+  text-align: center;
+  padding: 6px 0;
+  border: 2px solid grey;
+  width: 130px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: .5s;
+  cursor: pointer;
+  &:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    transition: .4s;
+  }
+}
+
 
 
 h1 {
@@ -19,6 +66,128 @@ h1 {
   transform: translateX(-50%);
   margin: 0;
   font-size: 50px;
+  z-index: 101;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, .7);
+}
+
+.start {
+  display: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 100;
+  &.active {
+    display: block;
+     h1 {
+      top: 40%;
+      transfosform: translate(-50%, -50%);
+      font-size: 80px;
+    }
+    & + .title {
+      display: none;
+    }
+  }
+}
+
+
+.menu {
+  opacity: 0;
+  visibility: hidden;
+  background: url(../img/menu.png) no-repeat center;
+  width: 530px;
+  height: 570px;
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  z-index: 1200;
+  transition: .3s;
+  text-align: center;
+  color: brown;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transition: .3s;
+  }
+  h2 {
+    color: grey;
+    margin-top: 65px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, .7);
+  }
+  .name {
+    display: block;
+    margin: 5px auto 20px auto;
+    background: transparent;
+    padding: 7px;
+  }
+}
+
+.choose {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.radio_wrap {
+  position: relative;
+  color: brown;
+  .radio_warrior {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border: 1px solid grey;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    &#radio_knight {
+      background-image: url(../img/knight.jpg);
+    }
+    &#radio_paladin {
+      background-image: url(../img/paladin.jpg);
+    }
+    &#radio_barbar {
+      background-image: url(../img/barbar.jpg);
+    }
+    &:focus {
+      border: 3px solid brown;
+    }
+    & + label {
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.controls {
+  margin-top: 30px;
+  text-align: left;
+  .control_wrap {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px auto;
+    width: 200px;
+    .set {
+      margin-right: 50px;
+    }
+  }
+}
+
+.btn_submit {
+  font-family: 'MedievalSharp', cursive;
+  background-color: transparent;
+  color: brown;
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+  transform: translateX(-50%);
 }
 
 .field_wrap {
@@ -30,6 +199,10 @@ h1 {
   height: 500px;
   border: 30px solid grey;
   border-image: url(../img/border.png) 30 round round;
+  display: none;
+  &.active {
+    display: block;
+  }
 }
 
 #field {
@@ -43,43 +216,179 @@ h1 {
   height: 500px;
 }
 
-
-.warrior {
-  background: url(../img/warrior.png) no-repeat;
-  width: 60px;
-  height: 65px;
+.shields {
+  background: url(../img/shield-sprite.png) no-repeat center;
+  background-size: cover;
+  width: 50px;
+  height: 315px;
   position: absolute;
-  bottom: 0;
-  right: 0;
-  &.attack {
-    background-position: -185px 0;
+  &.fp {
+    top: -25px;
+    left: -100px;
+    &.shields-4 {
+      clip: rect(auto, auto, 260px, auto);
+    }
+    &.shields-3 {
+      clip: rect(auto, auto, 190px, auto);
+    }
+    &.shields-2 {
+      clip: rect(auto, auto, 130px, auto);
+    }
+    &.shields-1 {
+      clip: rect(auto, auto, 50px, auto);
+    }
   }
-}
-
-.palladin {
-  background: url(../img/palladin.png) no-repeat;
-  width: 60px;
-  height: 65px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  &.attack {
-    background-position: 0 -62px;
-  }
-}
-
-.gladiator {
-  background: url(../img/gladiator.png) no-repeat;
-  width: 60px;
-  height: 65px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  &.attack {
-    background-position: -472px -246px;
+  &.sp {
+    bottom: -25px;
+    right: -100px;
+    &.shields-4 {
+      clip: rect(40px, auto, auto, auto);
+    }
+    &.shields-3 {
+      clip: rect(130px, auto, auto, auto);
+    }
+    &.shields-2 {
+      clip: rect(190px, auto, auto, auto);
+    }
+    &.shields-1 {
+      clip: rect(260px, auto, auto, auto);
+    }
   }
 }
 
 .go {
   transform: rotate(4deg);
+}
+
+.warrior {
+  width: 60px;
+  height: 65px;
+  &.fp {
+    position: absolute;
+    top: 5px;
+    left: 0;
+  }
+  &.sp {
+    position: absolute;
+    bottom: 2px;
+    right: 0;
+  }
+}
+
+
+.knight {
+  background: url(../img/knight.png) no-repeat;
+   background-position: -6px -6px;
+  &.attack {
+    animation: knight .3s linear;
+  }
+}
+
+@keyframes knight {
+  0%
+     {
+         background-position: 0 -6px;
+     }
+     33.332%
+     {
+         background-position: 0 -6px;
+     }
+     33.334%
+     {
+        background-position: -386px -70px;
+     }
+     66.665%
+     {
+        background-position: -386px -70px;
+     }
+     66.667%
+     {
+        background-position: -193px -6px;
+     }
+     99.999%
+     {
+        background-position: -193px -6px;
+     }
+     100%
+     {
+         background-position: -0px -6px;
+     }
+}
+
+.paladin {
+  background: url(../img/paladin.png) no-repeat;
+  background-position: -6px 8px;
+  &.attack {
+    animation: paladin .4s linear;
+  }
+}
+
+@keyframes paladin {
+  0%
+     {
+         background-position: -6px 8px;
+     }
+     33.332%
+     {
+         background-position: -6px 8px;
+     }
+     33.334%
+     {
+        background-position: -192px -57px;
+     }
+     66.665%
+     {
+        background-position: -192px -57px;
+     }
+     66.667%
+     {
+        background-position: -6px -57px;
+     }
+     99.999%
+     {
+        background-position: -6px -57px;
+     }
+     100%
+     {
+         background-position: -6px 8px;
+     }
+}
+
+.barbar {
+  background: url(../img/barbar.png) no-repeat;
+  background-position: 6px 2px;
+  &.attack {
+    animation: barbar .3s linear;
+  }
+}
+
+@keyframes barbar {
+  0%
+     {
+         background-position: 6px 2px;
+     }
+     33.332%
+     {
+         background-position: 6px 2px;
+     }
+     33.334%
+     {
+        background-position: -472px -246px;
+     }
+     66.665%
+     {
+        background-position: -472px -246px;
+     }
+     66.667%
+     {
+        background-position: 5px -307px;
+     }
+     99.999%
+     {
+        background-position: 5px -307px;
+     }
+     100%
+     {
+         background-position: -0px 0;
+     }
 }

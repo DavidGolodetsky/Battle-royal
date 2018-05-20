@@ -5,17 +5,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="img/fav.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
-  <title>Document</title>
+  <title>Battle royale</title>
 </head>
 <body>
-  <h1>Battle royale</h1>
-  <div class="field_wrap">
-    <div id="field">
-      <div class="knight warrior attack"></div>
-      <div class="knight gladiator attack"></div>
+  <div class="audio_wrap">
+    <audio id='sound_intro' src="audio/intro.mp3" type="audio/mpeg" controls></audio>
+    <audio id='sound_battle' src="audio/battle.mp3" type="audio/mpeg" controls></audio>
+  </div>
+  <audio id='sound_win' src="audio/win.mp3" type="audio/mpeg"></audio>
+  <audio id='sound_sword' src="audio/sword.mp3" type="audio/mpeg"></audio>
+  <div class="start active">
+    <h1>Battle royale</h1>
+    <div class="btn btn_start">Play</div>
+    <div class="menu" id="player1">
+      <h2>First PLayer</h2>
+      <label for="#name-fp">Name your warrior</label>
+      <input class="name" type="text" name="name" id="name-fp">
+      <div>Choose your warrior</div>
+      <div class="choose">
+        <div class="radio_wrap">
+          <input type="radio" class="radio_warrior" id="radio_knight"></input>
+          <label for="radio_knight">Knight</label>
+        </div>
+          <div class="radio_wrap">
+            <input type="radio" class="radio_warrior" id="radio_paladin"></input>
+            <label for="radio_paladin">Paladin</label>
+          </div>
+        <div class="radio_wrap">
+          <input type="radio" class="radio_warrior" id="radio_barbar"></input>
+          <label for="radio_barbar">Barbar</label>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="control_wrap">
+          <span class="set">Up</span>
+          <span>W</span>
+        </div>
+        <div class="control_wrap">
+          <span class="set">Down</span>
+          <span>S</span>
+        </div>
+        <div class="control_wrap">
+          <span class="set">Left</span>
+          <span>A</span>
+        </div>
+        <div class="control_wrap">
+          <span class="set">Right</span>
+          <span>D</span>
+        </div>
+        <div class="control_wrap">
+          <span class="set">Attack</span>
+          <span>Space</span>
+        </div>
+      </div>
+      <input class="btn btn_submit" type="submit" name="done" value="Done">
+    </div>
+    <div class="menu" id="player2">
+      <h2>Second Player</h2>
+      <label for="#name-fp">Name your warrior</label>
+      <input class="name" type="text" name="name" id="name-fp">
+      <div>Choose your warrior</div>
+      <div class="choose">
+        <div class="radio_wrap">
+          <input type="radio" class="radio_warrior" id="radio_knight"></input>
+          <label for="radio_knight">Knight</label>
+        </div>
+          <div class="radio_wrap">
+            <input type="radio" class="radio_warrior" id="radio_paladin"></input>
+            <label for="radio_paladin">Paladin</label>
+          </div>
+        <div class="radio_wrap">
+          <input type="radio" class="radio_warrior" id="radio_barbar"></input>
+          <label for="radio_barbar">Barbar</label>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="control_wrap">
+          <span class="set">Up</span>
+          <span>&#8593;</span>
+        </div>
+        <div class="control_wrap">
+          <span class="set">Down</span>
+          <span>&#8595;</span>
+        </div>
+        <div class="control_wrap">
+          <span class="set">Left</span>
+          <span>&#8592;</span>
+        </div>
+        <div class="control_wrap">
+          <span class="set">Right</span>
+          <span>&#8594;</span>
+        </div>
+        <div class="control_wrap">
+          <span class="set">Attack</span>
+          <span>\</span>
+        </div>
+      </div>
+      <input class="btn btn_submit" type="submit" name="done" value="Done">
     </div>
   </div>
+  <h1 class="title">Battle royale</h1>
+  <div class="field_wrap">
+    <div id="field">
+      <div class="warrior sp barbar"></div>
+      <div class="warrior fp paladin"></div>
+      <div class="shields fp"></div>
+      <div class="shields sp"></div>
+    </div>
+  </div>
+  <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
